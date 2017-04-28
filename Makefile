@@ -5,22 +5,17 @@
 ## Login   <arthur.baurens@epitech.eu>
 ##
 ## Started on  Thu Apr 20 18:31:30 2017 Arthur Baurens
-## Last update Thu Apr 20 18:59:42 2017 Arthur Baurens
+## Last update Fri Apr 28 08:59:31 2017 Arthur Baurens
 ##
 
 CC		=	gcc
 
-NAME		=	perfect
-
-SRC		=	main.c
+SRC		=	generator
 
 OBJ		=	$(SRC:.c=.o)
 
-$(NAME):	$(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-	cp $(NAME) ../
-
-all:	$(NAME)
+all:	./generator/generator
+	make -C ./generator/
 
 clean:
 	rm -rf $(OBJ)
@@ -28,7 +23,6 @@ clean:
 fclean:
 	rm -rf $(OBJ)
 	rm -rf $(NAME)
-	rm -rf ../$(NAME)
 
 re: fclean all
 
