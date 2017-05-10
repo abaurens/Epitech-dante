@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Fri Apr 28 09:29:42 2017 Arthur Baurens
-** Last update Fri Apr 28 12:28:52 2017 Arthur Baurens
+** Last update Thu May 11 01:11:12 2017 Arthur Baurens
 */
 
 #include <string.h>
@@ -66,7 +66,7 @@ t_vec		chose_dir(t_vec pos, t_maze *maze)
   return (fpos);
 }
 
-char		gen_maze(t_maze *maze)
+static char	generate(t_maze *maze)
 {
   t_vec		dir;
   t_vec		pos;
@@ -92,6 +92,26 @@ char		gen_maze(t_maze *maze)
 	  pos = v_add(pos, dir);
 	}
     }
-  display_maze(maze);
   return (0);
+}
+
+char	gen_maze(t_maze *maze)
+{
+  int	x;
+  int	y;
+  char	ret;
+
+  y = -1;
+  ret = generate(maze);
+  while (++y < maze->h)
+    {
+      x = -1;
+      while (++x < maze->w)
+	{
+	  if ((x + y) % 2 == 1 && rand() % 5 == 0)
+	    maze->grid[y][x] = PATH;
+	}
+    }
+  display_maze(maze);
+  return (ret);
 }
