@@ -5,14 +5,17 @@
 ## Login   <arthur.baurens@epitech.eu>
 ##
 ## Started on  Fri May 12 16:17:41 2017 Arthur Baurens
-## Last update Fri May 12 17:10:08 2017 Arthur Baurens
+## Last update Sat May 13 22:52:18 2017 Arthur Baurens
 ##
 
 CC	=	gcc
 
 NAME	=	libmaze.a
 
-SRC	=	main.c
+SRC	=	files.c		\
+		maze.c		\
+		graph.c		\
+		nodes.c
 
 DEP	=	../liblst.a
 
@@ -20,10 +23,9 @@ DEP_DIR	=	../lib_list/
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-I./include -I../../include -W -Wall -Wextra -ansi -pedantic
+CFLAGS	=	-I./include -I../../include -W -Wall -Wextra #-ansi -pedantic
 
 $(NAME):	$(DEP) $(OBJ)
-	$(CC) -o lol $(OBJ) -L../ -llst -lstr
 	ar rcs $(NAME) $(OBJ)
 	cp -f ./include/* ../../include/
 	cp -f ./$(NAME) ../
@@ -34,8 +36,7 @@ $(DEP):
 all:	$(NAME)
 
 debug:	CFLAGS += -g
-debug:	$(OBJ)
-	$(CC) -o lol $(OBJ) -L../ -llst -lstr
+debug:	$(dep) $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 	ranlib $(NAME)
 	cp -f ./include/* ../../include/

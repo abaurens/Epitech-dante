@@ -5,7 +5,7 @@
 ## Login   <arthur.baurens@epitech.eu>
 ##
 ## Started on  Fri May 12 15:20:49 2017 Arthur Baurens
-## Last update Fri May 12 17:00:30 2017 Arthur Baurens
+## Last update Sat May 13 22:53:12 2017 Arthur Baurens
 ##
 
 CC	=	gcc
@@ -21,7 +21,7 @@ SRC	=	elements.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-I./include -I../../include -W -Wall -Wextra -ansi -pedantic
+CFLAGS	=	-I./include -I../../include -W -Wall -Wextra #-ansi -pedantic
 
 $(NAME):	$(OBJ) $(DEP)
 	ar rcs $(NAME) $(OBJ)
@@ -34,7 +34,7 @@ $(DEP):
 all:	$(NAME)
 
 debug:	CFLAGS += -g
-debug:	$(OBJ)
+debug:	$(DEP) $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 	ranlib $(NAME)
 	cp -f ./include/* ../../include/

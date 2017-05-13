@@ -5,10 +5,11 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 19:19:48 2017 Arthur Baurens
-** Last update Fri May 12 19:28:33 2017 Arthur Baurens
+** Last update Sat May 13 22:16:28 2017 Arthur Baurens
 */
 
 #include <unistd.h>
+#include <string.h>
 #include <stdlib.h>
 #include "lib_str.h"
 #include "lib_list.h"
@@ -37,20 +38,44 @@ char	add_elem(t_list *lst, void *data)
   return (0);
 }
 
-char	remove_elem(t_list *lst, t_elem_list *elem)
+void		*get_elem(t_list *lst, void *sch, void *fct)
 {
+  t_elem_list	*e;
+  char		(*cmp)(void *, void *);
+
+  cmp = fct;
+  e = lst->head;
+  if (cmp == NULL)
+   return (NULL);
+  while (e != NULL)
+    {
+      if (cmp(e->data, sch))
+	return (e->data);
+      e = e->next;
+    }
+  return (NULL);
+}
+
+char		remove_elem(t_list *lst, void *elem)
+{
+  t_elem_list	*tmp;
+
   if (elem == NULL || lst == NULL)
     return (0);
-  if (lst->size <= 0)
+  tmp = lst->head;
+  while (tmp != NULL && tmp->data != elem)
+    tmp = tmp->next;
+  if (lst->size <= 0 || tmp == NULL)
     return (1);
-  if (elem->next != NULL)
-    elem->next->prev = elem->prev;
-  if (elem->prev != NULL)
-    elem->prev->next = elem->next;
-  if (elem == lst->head)
-    lst->head = elem->next;
-  free(elem->data);
-  free(elem);
+  if (tmp->next != NULL)
+    tmp->next->prev = tmp->prev;
+  if (tmp->prev != NULL)
+    tmp->prev->next = tmp->next;
+  if (tmp == lst->head)
+    lst->head = tmp->next;
+  if (tmp == lst->tail)
+    lst->tail = tmp->prev;
+  free(tmp);
   lst->size--;
   return (0);
 }

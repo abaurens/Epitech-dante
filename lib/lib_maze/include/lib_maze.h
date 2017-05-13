@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 17:31:18 2017 Arthur Baurens
-** Last update Sat May 13 20:34:32 2017 Arthur Baurens
+** Last update Sat May 13 21:20:28 2017 Arthur Baurens
 */
 
 #ifndef LIB_MAZE_H_
@@ -46,11 +46,14 @@ typedef struct s_node
 }		t_node;
 
 t_node	*new_node(int, int, t_node_state);
+void	unlink_node(t_node *, t_node *);
 void	link_node(t_node *, t_node *);
 
 t_list	get_files_lines(const int);
 char	get_tab_from_list(t_list *, t_maze *);
 
-void	get_maze_graph(t_maze *maze, t_list *graph);
+void	get_maze_graph(t_maze *, t_list *);
+
+void	simplify_graph(t_list *);
 
 #endif /* !LIB_MAZE_H_ */

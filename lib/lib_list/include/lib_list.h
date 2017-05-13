@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 19:20:43 2017 Arthur Baurens
-** Last update Fri May 12 19:26:59 2017 Arthur Baurens
+** Last update Sat May 13 21:14:01 2017 Arthur Baurens
 */
 
 #ifndef LIB_LIST_H_
@@ -33,7 +33,8 @@ char	clear_list(t_list *);
 /*
 ** elements.c
 */
-char	remove_elem(t_list *, t_elem_list *);
+void	*get_elem(t_list *lst, void *sch, void *);
+char	remove_elem(t_list *, void *);
 char	add_elem(t_list *, void *);
 
 #endif /* !LIB_LIST_H_ */
