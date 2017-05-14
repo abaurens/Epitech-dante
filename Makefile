@@ -11,40 +11,26 @@
 CC	=	gcc
 
 all:
+	mkdir -p tournament
 	make -C ./astar
 	make -C ./depth
 	make -C ./breadth
 	make -C ./generator
+	cp ./astar/solver ./tournament/
 
 clean:
-	make -C ./astar clean
-	make -C ./depth clean
-	make -C ./breadth clean
-	make -C ./generator clean
-
-clean_dependencies: clean
 	make -C ./astar clean_dependencies
 	make -C ./depth clean_dependencies
 	make -C ./breadth clean_dependencies
-	make -C ./generator clean_dependencies
+	make -C ./generator clean
 
-fclean:	clean
-	make -C ./astar fclean
-	make -C ./depth fclean
-	make -C ./breadth fclean
-	make -C ./generator fclean
-
-
-fclean_dependencies: fclean
+fclean: clean
 	make -C ./astar fclean_dependencies
 	make -C ./depth fclean_dependencies
 	make -C ./breadth fclean_dependencies
-	make -C ./generator fclean_dependencies
+	make -C ./generator fclean
+	rm -rf ./tournament/solver
 
-re:
-	make -C ./astar re
-	make -C ./depth re
-	make -C ./breadth re
-	make -C ./generator re
+re:	fclean all
 
 .PHONY:	all clean clean_dependencies fclean fclean_dependencies re
