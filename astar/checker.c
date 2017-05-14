@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sun May 14 17:51:40 2017 Arthur Baurens
-** Last update Sun May 14 20:11:53 2017 Arthur Baurens
+** Last update Sun May 14 23:34:56 2017 Arthur Baurens
 */
 
 #include <stdio.h>
@@ -44,6 +44,17 @@ static void	display(t_maze *maze)
     }
 }
 
+int	get_dist(t_node *n1, t_node *n2)
+{
+  int	l;
+  t_vec	dif;
+
+  dif.x = n2->pos.x - n1->pos.x;
+  dif.y = n2->pos.y - n1->pos.y;
+  l = ABS(dif.x + dif.y);
+  return (l);
+}
+
 static void	place_path(t_list *path, t_maze *maze)
 {
   int		l;
@@ -57,11 +68,9 @@ static void	place_path(t_list *path, t_maze *maze)
 	{
 	  n1 = path->head->data;
 	  n2 = path->head->next->data;
-	  dif.x = n2->pos.x - n1->pos.x;
-      	  dif.y = n2->pos.y - n1->pos.y;
-      	  l = ABS(dif.x + dif.y);
-      	  dif.x /= l;
-      	  dif.y /= l;
+	  l = get_dist(n1, n2);
+	  dif.x = (n2->pos.x - n1->pos.x) / l;
+      	  dif.y = (n2->pos.y - n1->pos.y) / l;
       	  while (l >= 0)
       	    {
       	      maze->tab[n1->pos.y + dif.y * l][n1->pos.x + dif.x * l] = 'o';

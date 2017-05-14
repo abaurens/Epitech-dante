@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 17:19:45 2017 Arthur Baurens
-** Last update Sun May 14 18:26:16 2017 Arthur Baurens
+** Last update Sun May 14 22:27:20 2017 Arthur Baurens
 */
 
 #include <sys/types.h>
@@ -17,29 +17,6 @@
 #include "lib_str.h"
 #include "lib_list.h"
 #include "lib_maze.h"
-
-static char	explore(t_list *lst, t_node *n, t_node *s)
-{
-  t_elem_list	*cur;
-
-  n->marked = 1;
-  cur = n->linked.head;
-  if (n == s)
-    {
-      add_elem(lst, n);
-      return (1);
-    }
-  while (cur != NULL)
-    {
-      if (((t_node *)cur->data)->marked == 0 && explore(lst, cur->data, s))
-	{
-	  add_elem(lst, n);
-	  return (1);
-	}
-      cur = cur->next;
-    }
-  return (0);
-}
 
 int		main(int ac, char **av)
 {
@@ -61,6 +38,6 @@ int		main(int ac, char **av)
     return (84);
   get_maze_graph(&maze, &graph);
   simplify_graph(&graph);
-  explore(&path, graph.head->data, graph.tail->data);
+  astar(&path, graph.head->data, graph.tail->data);
   return (check_solution(&path, &maze, &graph));
 }

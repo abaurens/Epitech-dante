@@ -1,32 +1,18 @@
 ##
-## Makefile for depth in /home/baurens/Work/Tek1/Projects/IA/dante/depth/
+## Makefile for dante in /home/baurens/Work/Tek1/Projects/IA/dante/
 ##
 ## Made by Arthur Baurens
 ## Login   <arthur.baurens@epitech.eu>
 ##
-## Started on  Sat May 13 22:40:04 2017 Arthur Baurens
-## Last update Sun May 14 23:36:37 2017 Arthur Baurens
+## Started on  Sun May 14 23:37:24 2017 Arthur Baurens
+## Last update Sun May 14 23:38:39 2017 Arthur Baurens
 ##
 
 CC	=	gcc
 
-NAME	=	solver
-
-SRC	=	main.c		\
-		astar.c		\
-		checker.c	\
-		astar_core.c
-
-OBJ	=	$(SRC:.c=.o)
-
-LIBS	=	-L../lib/ -lmaze -llst -lstr
-
-CFLAGS	=	-I./include -I../include -W -Wall -Wextra -ansi -pedantic
-
-DEP	=	../lib/libmaze.a
-
-DEP_DIR	=	../lib/lib_maze/
-
+DEP	=	./astar/solver	\
+		./depth/solver	\
+		./breadth/solver
 
 $(NAME):	$(DEP) $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LIBS)
