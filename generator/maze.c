@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Fri Apr 28 09:29:42 2017 Arthur Baurens
-** Last update Thu May 11 01:11:12 2017 Arthur Baurens
+** Last update Sun May 14 18:44:05 2017 Arthur Baurens
 */
 
 #include <string.h>
@@ -103,7 +103,7 @@ char	gen_maze(t_maze *maze)
 
   y = -1;
   ret = generate(maze);
-  while (++y < maze->h)
+  while (!maze->perfect && ++y < maze->h)
     {
       x = -1;
       while (++x < maze->w)
@@ -112,6 +112,10 @@ char	gen_maze(t_maze *maze)
 	    maze->grid[y][x] = PATH;
 	}
     }
+  maze->grid[0][0] = PATH;
+  maze->grid[maze->h - 1][maze->w - 1] = PATH;
+  if (maze->w % 2 == 0 && maze->h % 2 == 0)
+    maze->grid[maze->h - 1][maze->w - 2] = PATH;
   display_maze(maze);
   return (ret);
 }

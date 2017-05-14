@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sat May 13 20:24:44 2017 Arthur Baurens
-** Last update Sat May 13 21:15:26 2017 Arthur Baurens
+** Last update Sun May 14 14:54:43 2017 Arthur Baurens
 */
 
 #include <stdlib.h>
@@ -31,31 +31,31 @@ t_list		get_files_lines(const int fd)
   return (lst);
 }
 
-char	get_tab_from_list(t_list *lst, t_maze *maze)
+char	get_tab_from_list(t_list *l, t_maze *maze)
 {
   int	i;
 
   i = -1;
   maze->tab = NULL;
-  if (lst->size == 0 ||
-      (maze->tab = malloc(sizeof(char *) * (lst->size + 1))) == NULL)
+  if (l->size == 0 || !(maze->tab = malloc(sizeof(char *) * (l->size + 1))))
     return (1);
-  maze->h = lst->size;
-  maze->tab[lst->size] = NULL;
-  maze->w = str_len(lst->head->data);
-  while (lst->size)
+  maze->h = l->size;
+  maze->tab[l->size] = NULL;
+  maze->w = str_len(l->head->data);
+  while (l->size)
     {
-      if ((str_len(lst->head->data) != maze->w) ||
-	  (maze->tab[++i] = my_strncat(lst->head->data, NULL, 0)) == NULL)
+      if ((str_len(l->head->data) != maze->w) ||
+	  (maze->tab[++i] = my_strncat(l->head->data, NULL, 0)) == NULL)
 	{
-	  clear_list(lst);
+	  clear_list(l);
 	  while (--i >= 0)
 	    free(maze->tab[i]);
 	  free(maze->tab);
 	  maze->tab = NULL;
 	  return (1);
 	}
-      remove_elem(lst, lst->head->data);
+      free(l->head->data);
+      remove_elem(l, l->head->data);
     }
   return (0);
 }

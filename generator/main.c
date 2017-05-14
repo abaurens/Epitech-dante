@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu Apr 20 18:31:37 2017 Arthur Baurens
-** Last update Fri Apr 28 10:41:17 2017 Arthur Baurens
+** Last update Sun May 14 18:41:32 2017 Arthur Baurens
 */
 
 #include <unistd.h>
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
       dprintf(2, "%s: Invalid argument(s). %s.\n", av[0], e);
       return (print_usage(av[0]));
     }
-  if (ac == 4 && strcmp(av[3], "perfect"))
+  if (ac == 4 && !(maze.perfect = !strcmp(av[3], "perfect")))
     {
       dprintf(2, "%s: Unknown argument '%s'.\n", av[0], av[3]);
       return (print_usage(av[0]));

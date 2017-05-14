@@ -5,14 +5,14 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Fri Apr 28 09:00:37 2017 Arthur Baurens
-** Last update Fri Apr 28 12:28:43 2017 Arthur Baurens
+** Last update Sun May 14 18:38:42 2017 Arthur Baurens
 */
 
 #ifndef GEN_H_
 # define GEN_H_
 
 # define WALL 'X'
-# define PATH ' '
+# define PATH '*'
 
 typedef struct	s_vec
 {
@@ -32,6 +32,7 @@ typedef struct	s_maze
   int		w;
   int		h;
   char		**grid;
+  char		perfect;
 }		t_maze;
 
 char	gen_maze(t_maze *maze);

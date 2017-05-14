@@ -5,9 +5,10 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 19:04:35 2017 Arthur Baurens
-** Last update Sat May 13 21:14:47 2017 Arthur Baurens
+** Last update Sun May 14 15:07:08 2017 Arthur Baurens
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include "lib_list.h"
 
@@ -24,6 +25,8 @@ t_list		init_list()
 char	clear_list(t_list *lst)
 {
   while (lst->size)
-    remove_elem(lst, lst->head->data);
+    {
+      remove_elem(lst, lst->head->data);
+    }
   return (0);
 }

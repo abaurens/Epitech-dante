@@ -5,18 +5,19 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sat May 13 20:32:26 2017 Arthur Baurens
-** Last update Sat May 13 20:50:19 2017 Arthur Baurens
+** Last update Sun May 14 15:20:46 2017 Arthur Baurens
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include "lib_list.h"
 #include "lib_maze.h"
 
 static char	cmp_node(t_node *node, t_vec *pos)
 {
-	if (node->pos.x == pos->x && node->pos.y == pos->y)
-	return (1);
-	return (0);
+  if (node->pos.x == pos->x && node->pos.y == pos->y)
+    return (1);
+  return (0);
 }
 
 static char	is_cross(t_maze *maze, int x, int y)
@@ -97,4 +98,18 @@ void		get_maze_graph(t_maze *maze, t_list *graph)
 	}
     }
   link_nodes(maze, graph);
+}
+
+void	delete_maze(t_maze *maze)
+{
+  int	i;
+
+  i = 0;
+  while (maze->tab[i])
+    {
+      free(maze->tab[i]);
+      i++;
+    }
+  free(maze->tab);
+  maze->tab = NULL;
 }
