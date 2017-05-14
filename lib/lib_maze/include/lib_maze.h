@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 17:31:18 2017 Arthur Baurens
-** Last update Sun May 14 17:33:32 2017 Arthur Baurens
+** Last update Sun May 14 19:58:11 2017 Arthur Baurens
 */
 
 #ifndef LIB_MAZE_H_
@@ -41,6 +41,7 @@ typedef struct s_node_list	t_node_list;
 
 typedef struct s_node
 {
+  struct s_node	*parent;
   t_vec		pos;
   char		marked;
   t_list	linked;

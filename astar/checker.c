@@ -5,9 +5,11 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sun May 14 17:51:40 2017 Arthur Baurens
-** Last update Sun May 14 18:30:18 2017 Arthur Baurens
+** Last update Sun May 14 20:11:53 2017 Arthur Baurens
 */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "lib_str.h"
 #include "lib_list.h"
@@ -27,7 +29,7 @@ char	check_io(char **maze, int w, int h)
   return (1);
 }
 
-static void	display(t_maze *maze, t_list *graph)
+static void	display(t_maze *maze)
 {
   int		y;
   int		x;
@@ -78,7 +80,7 @@ int	check_solution(t_list *path, t_maze *maze, t_list *graph)
   if (path->size > 0)
     {
       place_path(path, maze);
-      display(maze, graph);
+      display(maze);
       ret = 0;
     }
   else

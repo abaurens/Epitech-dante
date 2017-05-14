@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Thu May 11 17:19:45 2017 Arthur Baurens
-** Last update Sun May 14 18:26:16 2017 Arthur Baurens
+** Last update Sun May 14 20:09:46 2017 Arthur Baurens
 */
 
 #include <sys/types.h>
@@ -18,27 +18,43 @@
 #include "lib_list.h"
 #include "lib_maze.h"
 
-static char	explore(t_list *lst, t_node *n, t_node *s)
+static void	explore(t_node *n)
 {
-  t_elem_list	*cur;
+  t_node	*t;
+  t_list	stack;
+  t_elem_list	*lnk;
 
+  stack = init_list();
+  add_elem(&stack, n);
   n->marked = 1;
-  cur = n->linked.head;
-  if (n == s)
+  while (stack.size)
     {
-      add_elem(lst, n);
-      return (1);
-    }
-  while (cur != NULL)
-    {
-      if (((t_node *)cur->data)->marked == 0 && explore(lst, cur->data, s))
+      n = stack.head->data;
+      remove_elem(&stack, n);
+      lnk = n->linked.head;
+      while (lnk != NULL)
 	{
-	  add_elem(lst, n);
-	  return (1);
+	  t = lnk->data;
+	  if (t->marked == 0)
+	    {
+	      t->marked = 1;
+	      t->parent = n;
+	      add_elem(&stack, t);
+	    }
+	  lnk = lnk->next;
 	}
-      cur = cur->next;
     }
-  return (0);
+}
+
+static void	backtrack(t_list *path, t_node *n)
+{
+  if (n && n->parent == NULL)
+    return;
+  while (n != NULL)
+    {
+      add_elem(path, n);
+      n = n->parent;
+    }
 }
 
 int		main(int ac, char **av)
@@ -61,6 +77,7 @@ int		main(int ac, char **av)
     return (84);
   get_maze_graph(&maze, &graph);
   simplify_graph(&graph);
-  explore(&path, graph.head->data, graph.tail->data);
+  explore(graph.head->data);
+  backtrack(&path, graph.tail->data);
   return (check_solution(&path, &maze, &graph));
 }

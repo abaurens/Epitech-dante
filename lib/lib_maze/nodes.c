@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sat May 13 20:20:14 2017 Arthur Baurens
-** Last update Sun May 14 15:48:58 2017 Arthur Baurens
+** Last update Sun May 14 19:59:14 2017 Arthur Baurens
 */
 
 #include <stdlib.h>
@@ -23,6 +23,7 @@ t_node		*new_node(int x, int y, t_node_state s)
   node->pos.y = y;
   node->state = s;
   node->marked = 0;
+  node->parent = NULL;
   node->linked = init_list();
   return (node);
 }
