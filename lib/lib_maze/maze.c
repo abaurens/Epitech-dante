@@ -5,7 +5,7 @@
 ** Login   <arthur.baurens@epitech.eu>
 **
 ** Started on  Sat May 13 20:32:26 2017 Arthur Baurens
-** Last update Sun May 14 15:20:46 2017 Arthur Baurens
+** Last update Mon May 29 14:07:22 2017 Arthur Baurens
 */
 
 #include <stdlib.h>
@@ -58,9 +58,9 @@ static void	link_nodes(t_maze *maze, t_list *graph)
   while (e != NULL)
     {
       i = -1;
+      pos = ((t_node *)e->data)->pos;
       while (++i < 2)
 	{
-	  pos = ((t_node *)e->data)->pos;
 	  if (pos.y + i >= maze->h || pos.x + (1 - i) >= maze->w ||
 	      maze->tab[pos.y + i][pos.x + (1 - i)] != '*')
 	    continue;
@@ -77,11 +77,12 @@ static void	link_nodes(t_maze *maze, t_list *graph)
 
 void		get_maze_graph(t_maze *maze, t_list *graph)
 {
-  int		x;
-  int		y;
+  unsigned int	x;
+  unsigned int	y;
   t_node_state	ns;
 
   y = -1;
+  dprintf(2, "\tadding nodes...\n");
   while (++y < maze->h)
     {
       x = -1;
@@ -97,6 +98,7 @@ void		get_maze_graph(t_maze *maze, t_list *graph)
 	    add_elem(graph, new_node(x, y, ns));
 	}
     }
+  dprintf(2, "\tLinking nodes...\n");
   link_nodes(maze, graph);
 }
 
