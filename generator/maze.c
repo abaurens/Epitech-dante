@@ -66,6 +66,28 @@ t_vec		chose_dir(t_vec pos, t_maze *maze)
   return (fpos);
 }
 
+void	display_gen_maze(t_maze *maze, int x, int y)
+{
+  for (int j = -1; j <= maze->w; j++)
+    printf("%c", WALL);
+  printf("\n");
+  for (int i = 0; i < maze->h; i++)
+  {
+    printf("%c", WALL);
+    for (int j = 0; j < maze->w; j++)
+    {
+      if (i == y && j == x)
+        printf("%c", 'o');
+      else
+        printf("%c", maze->grid[i][j]);
+    }
+    printf("%c\n", WALL);
+  }
+  for (int j = -1; j <= maze->w; j++)
+    printf("%c", WALL);
+  printf("\n");
+}
+
 static char	generate(t_maze *maze)
 {
   t_vec		dir;
@@ -91,6 +113,9 @@ static char	generate(t_maze *maze)
 	    add(&list, pos.x, pos.y);
 	  pos = v_add(pos, dir);
 	}
+//   system("clear");
+//   display_gen_maze(maze, pos.x, pos.y);
+//   usleep(50000);
     }
   return (0);
 }

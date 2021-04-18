@@ -12,7 +12,7 @@
 # define LIB_STR_H_
 # define READ_SIZE (5)
 
-int	str_len(const char *);
+int		str_len(const char *);
 char	*get_next_line(const int fd);
 char	*my_strncat(const char *, const char *, int);
 

@@ -14,13 +14,14 @@
 #include "lib_str.h"
 #include "lib_list.h"
 #include "lib_maze.h"
+#include "solver.h"
 
 char	check_io(char **maze, int w, int h)
 {
   int	i;
 
   i = -1;
-  if (maze[0][0] == '*' && maze[h - 1][w - 1] == '*')
+  if (maze[0][0] == EMPTY && maze[h - 1][w - 1] == EMPTY)
     return (0);
   write(1, "no solution found\n", 18);
   while (maze[++i])
@@ -73,7 +74,7 @@ static void	place_path(t_list *path, t_maze *maze)
       	  dif.y = (n2->pos.y - n1->pos.y) / l;
       	  while (l >= 0)
       	    {
-      	      maze->tab[n1->pos.y + dif.y * l][n1->pos.x + dif.x * l] = 'o';
+      	      maze->tab[n1->pos.y + dif.y * l][n1->pos.x + dif.x * l] = PATH;
       	      l--;
       	    }
 	}

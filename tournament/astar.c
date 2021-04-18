@@ -96,14 +96,14 @@ void		astar(t_list *path, t_node *n, t_node *s)
       link_astar(&backup, cur = pop_astar(&stack, stack));
 
       if (cur->node == s)
-	{
-	  while (cur != NULL)
+	  {
+	    while (cur != NULL)
 	    {
 	      add_elem(path, cur->node);
 	      cur = cur->from;
 	    }
-	  return;
-	}
+	    return;
+	  }
       aply_for_child(&stack, backup, cur, s);
       sort_list(stack);
     }

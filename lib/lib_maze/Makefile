@@ -15,7 +15,8 @@ NAME	=	libmaze.a
 SRC	=	files.c		\
 		maze.c		\
 		graph.c		\
-		nodes.c
+		nodes.c		\
+		vec.c
 
 DEP	=	../liblst.a
 
@@ -23,7 +24,7 @@ DEP_DIR	=	../lib_list/
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-I./include -I../../include -W -Wall -Wextra #-ansi -pedantic
+CFLAGS	=	-I./include -I../../include -W -Wall -Wextra -g#-ansi -pedantic
 
 $(NAME):	$(DEP) $(OBJ)
 	ar rcs $(NAME) $(OBJ)

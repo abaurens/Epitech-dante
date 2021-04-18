@@ -12,7 +12,8 @@
 # define GEN_H_
 
 # define WALL 'X'
-# define PATH '*'
+/*# define PATH '*'*/
+# define PATH ' '
 
 typedef struct	s_vec
 {

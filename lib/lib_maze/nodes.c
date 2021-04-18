@@ -30,19 +30,19 @@ t_node		*new_node(int x, int y, t_node_state s)
 
 void		link_node(t_node *n1, t_node *n2)
 {
-  t_elem_list	*l;
+	t_elem_list	*l;
 
-  l = n1->linked.head;
-  if (n1 == NULL || n2 == NULL)
-    return;
-  while (l != NULL)
+	l = n1->linked.head;
+	if (n1 == NULL || n2 == NULL)
+		return;
+	while (l != NULL)
     {
-      if (l->data == n2)
-	return;
-      l = l->next;
-    }
-  add_elem(&n1->linked, n2);
-  add_elem(&n2->linked, n1);
+		if (l->data == n2)
+			return;
+		l = l->next;
+	}
+	add_elem(&n1->linked, n2);
+	add_elem(&n2->linked, n1);
 }
 
 void		unlink_node(t_node *n1, t_node *n2)

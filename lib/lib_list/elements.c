@@ -14,7 +14,7 @@
 #include "lib_str.h"
 #include "lib_list.h"
 
-char	add_elem(t_list *lst, void *data)
+char			add_elem(t_list *lst, void *data)
 {
   t_elem_list	*elem;
 
@@ -38,10 +38,10 @@ char	add_elem(t_list *lst, void *data)
   return (0);
 }
 
-void		*get_elem(t_list *lst, void *sch, void *fct)
+void			*get_elem(t_list *lst, void *sch, void *fct)
 {
   t_elem_list	*e;
-  char		(*cmp)(void *, void *);
+  char			(*cmp)(void *, void *);
 
   cmp = fct;
   e = lst->head;
@@ -50,7 +50,7 @@ void		*get_elem(t_list *lst, void *sch, void *fct)
   while (e != NULL)
     {
       if (cmp(e->data, sch))
-	return (e->data);
+		return (e->data);
       e = e->next;
     }
   return (NULL);
@@ -78,4 +78,17 @@ char		remove_elem(t_list *lst, void *elem)
   free(tmp);
   lst->size--;
   return (0);
+}
+
+void			display_list(t_list *lst)
+{
+	t_elem_list	*tmp;
+
+	tmp = lst->head;
+	while (tmp != NULL)
+	{
+		dprintf(2, tmp->data);
+		dprintf(2, "\n");
+		tmp = tmp->next;
+	}
 }

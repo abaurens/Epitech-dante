@@ -35,6 +35,7 @@ int		main(int ac, char **av)
     return (84);
   dprintf(2, "Getting file lines...\n");
   lst = get_files_lines(fd);
+  /*display_list(&lst);*/
   dprintf(2, "Closing file\n");
   close(fd);
   dprintf(2, "Converting to maze...\n");
@@ -42,8 +43,10 @@ int		main(int ac, char **av)
     return (84);
   dprintf(2, "Converting to graph...\n");
   get_maze_graph(&maze, &graph);
+  display_graph(&graph, maze.w, maze.h);
   dprintf(2, "Symplifying graph...\n");
   simplify_graph(&graph);
+  display_graph(&graph, maze.w, maze.h);
   dprintf(2, "Looking for solutions...\n");
   astar(&path, graph.head->data, graph.tail->data);
   dprintf(2, "Displaying solution :\n");

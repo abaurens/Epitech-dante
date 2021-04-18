@@ -36,5 +36,6 @@ char	clear_list(t_list *);
 void	*get_elem(t_list *lst, void *sch, void *);
 char	remove_elem(t_list *, void *);
 char	add_elem(t_list *, void *);
+void	display_list(t_list *lst);
 
 #endif /* !LIB_LIST_H_ */

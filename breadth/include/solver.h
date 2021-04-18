@@ -14,6 +14,9 @@
 #include "lib_list.h"
 #include "lib_maze.h"
 
+# define EMPTY ' '
+# define PATH 'o'
+
 char	check_io(char **maze, int w, int h);
 int	check_solution(t_list *path, t_maze *maze, t_list *graph);
 

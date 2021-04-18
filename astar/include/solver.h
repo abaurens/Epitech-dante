@@ -14,6 +14,9 @@
 #include "lib_list.h"
 #include "lib_maze.h"
 
+# define EMPTY ' '
+# define PATH 'o'
+
 typedef struct		s_astar
 {
   struct s_astar	*next;
